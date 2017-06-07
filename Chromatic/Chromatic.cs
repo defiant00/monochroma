@@ -1,4 +1,5 @@
-﻿using Chromatic.GameItems;
+﻿using Chromatic.Code.GameItems;
+using DataTypes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,12 +11,15 @@ namespace Chromatic
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
-        public static Color backColor = new Color(0f, 0.1f, 0.3f, 1f);
+        public Color backColor = new Color(0f, 0.1f, 0.3f, 1f);
         List<IGameItem> gameItems = new List<IGameItem>();
         public Random random = new Random();
         public Matrix WPVMatrix;
 
-        public Chromatic()
+		public SpriteMap spriteMap;
+		public Texture2D spriteMapTex;
+
+		public Chromatic()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1280;
@@ -27,7 +31,7 @@ namespace Chromatic
 
         protected override void Initialize()
         {
-            AddItem(new Editor(this));
+			gameItems.Add(new Editor(this));
 
             base.Initialize();
         }
@@ -36,7 +40,10 @@ namespace Chromatic
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            foreach (var item in gameItems) { item.LoadContent(); }
+			spriteMap = Content.Load<SpriteMap>("Data\\sprites");
+			spriteMapTex = Content.Load<Texture2D>("Images\\sprites");
+
+			foreach (var item in gameItems) { item.LoadContent(); }
         }
 
         protected override void UnloadContent()
@@ -48,7 +55,7 @@ namespace Chromatic
         {
             for (int i = gameItems.Count - 1; i >= 0; i--)
             {
-                if (gameItems[i].Remove())
+                if (gameItems[i].Remove)
                 {
                     gameItems[i].UnloadContent();
                     gameItems.RemoveAt(i);
@@ -56,7 +63,7 @@ namespace Chromatic
                 else { gameItems[i].Update(gameTime); }
             }
 
-            this.Window.Title = (gameTime.IsRunningSlowly ? "SLOW!" : "Fine");
+			Window.Title = (gameTime.IsRunningSlowly ? "SLOW!" : "Fine");
 
             base.Update(gameTime);
         }

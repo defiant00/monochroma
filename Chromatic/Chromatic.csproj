@@ -44,8 +44,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Chromatic.cs" />
-    <Compile Include="GameItems\Editor.cs" />
-    <Compile Include="GameItems\IGameItem.cs" />
+    <Compile Include="Code\GameItems\Editor.cs" />
+    <Compile Include="Code\GameItems\IGameItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -109,9 +109,7 @@
     <None Include="app.config" />
     <None Include="app.manifest" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DataTypes\DataTypes.csproj">
       <Project>{1cbcbe22-c065-474f-b65b-5a4a1f57a92c}</Project>

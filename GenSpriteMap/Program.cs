@@ -39,7 +39,7 @@ namespace GenSpriteMap
 					var area = areas[i];
 					if (outerSize.X <= area.Width && outerSize.Y <= area.Height)
 					{
-						outSprites.Areas.Add(new SpriteMap.Area { X = area.X + 1, Y = area.Y + 1, Width = img.Width, Height = img.Height });
+						outSprites.Areas.Add(new Microsoft.Xna.Framework.Rectangle(area.X + 1, area.Y + 1, img.Width, img.Height));
 
 						// Top-left pixel
 						g.DrawImage(img, new Rectangle(area.Location, new Size(1, 1)), new Rectangle(0, 0, 1, 1), GraphicsUnit.Pixel);
@@ -84,15 +84,17 @@ namespace GenSpriteMap
 				inSprites = xml.Deserialize(reader) as List<SpriteInput>;
 			}
 
-			outSprites.Sprites = inSprites.Select(i => new SpriteMap.Sprite
+			foreach(var s in inSprites)
 			{
-				Name = i.Name,
-				Indices = i.Frames.Select(f => indexLookup[f]).ToList(),
-				FrameRate = i.FrameRate,
-				Looped = i.Looped,
-				FlipX = i.FlipX,
-				FlipY = i.FlipY
-			}).ToList();
+				outSprites.Sprites[s.Name] = new SpriteMap.Sprite
+				{
+					Indices = s.Frames.Select(f => indexLookup[f]).ToList(),
+					FrameRate = s.FrameRate,
+					Looped = s.Looped,
+					FlipX = s.FlipX,
+					FlipY = s.FlipY,
+				};
+			}
 
 			spriteSheet.Save("..\\..\\..\\Chromatic\\Content\\Images\\sprites.png", ImageFormat.Png);
 
