@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Chromatic.Code.GameItems
+namespace Chromatic.Code.GameItem
 {
 	public interface IGameItem
 	{

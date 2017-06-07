@@ -1,4 +1,4 @@
-﻿using Chromatic.Code.GameItems;
+﻿using Chromatic.Code.GameItem;
 using DataTypes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,10 +16,10 @@ namespace Chromatic
         public Random random = new Random();
         public Matrix WPVMatrix;
 
-		public SpriteMap spriteMap;
-		public Texture2D spriteMapTex;
+        public Dictionary<string, SpriteData> spriteMap;
+        public Texture2D spriteMapTex;
 
-		public Chromatic()
+        public Chromatic()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1280;
@@ -31,7 +31,7 @@ namespace Chromatic
 
         protected override void Initialize()
         {
-			gameItems.Add(new Editor(this));
+            gameItems.Add(new Editor(this));
 
             base.Initialize();
         }
@@ -40,10 +40,10 @@ namespace Chromatic
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-			spriteMap = Content.Load<SpriteMap>("Data\\sprites");
-			spriteMapTex = Content.Load<Texture2D>("Images\\sprites");
+            spriteMap = Content.Load<Dictionary<string, SpriteData>>("Data\\sprites");
+            spriteMapTex = Content.Load<Texture2D>("Images\\sprites");
 
-			foreach (var item in gameItems) { item.LoadContent(); }
+            foreach (var item in gameItems) { item.LoadContent(); }
         }
 
         protected override void UnloadContent()
@@ -63,7 +63,7 @@ namespace Chromatic
                 else { gameItems[i].Update(gameTime); }
             }
 
-			Window.Title = (gameTime.IsRunningSlowly ? "SLOW!" : "Fine");
+            Window.Title = (gameTime.IsRunningSlowly ? "SLOW!" : "Fine");
 
             base.Update(gameTime);
         }

@@ -3,104 +3,162 @@
   <SpriteInput>
     <Name>indicator</Name>
     <Frames>
-      <string>indicator</string>
+	  <SpriteInputFrame>
+	    <Name>indicator</Name>
+		<DisplayTime>1000</DisplayTime>
+		<FlipX>false</FlipX>
+		<FlipY>false</FlipY>
+		<Rotation>0</Rotation>
+	  </SpriteInputFrame>
     </Frames>
     <FrameRate>0</FrameRate>
-    <Looped>false</Looped>
-    <FlipX>false</FlipX>
-    <FlipY>false</FlipY>
+    <LoopIndex>0</LoopIndex>
   </SpriteInput>
   <SpriteInput>
     <Name>corners</Name>
     <Frames>
-      <string>corners</string>
+	  <SpriteInputFrame>
+	    <Name>corners</Name>
+		<DisplayTime>1000</DisplayTime>
+		<FlipX>false</FlipX>
+		<FlipY>false</FlipY>
+		<Rotation>0</Rotation>
+	  </SpriteInputFrame>
     </Frames>
     <FrameRate>0</FrameRate>
-    <Looped>false</Looped>
-    <FlipX>false</FlipX>
-    <FlipY>false</FlipY>
+    <LoopIndex>0</LoopIndex>
   </SpriteInput>
   <SpriteInput>
     <Name>t_gggg</Name>
     <Frames>
-      <string>gggg</string>
+	  <SpriteInputFrame>
+	    <Name>gggg</Name>
+		<DisplayTime>1000</DisplayTime>
+		<FlipX>false</FlipX>
+		<FlipY>false</FlipY>
+		<Rotation>0</Rotation>
+	  </SpriteInputFrame>
     </Frames>
     <FrameRate>0</FrameRate>
-    <Looped>false</Looped>
-    <FlipX>false</FlipX>
-    <FlipY>false</FlipY>
+    <LoopIndex>0</LoopIndex>
   </SpriteInput>
   <SpriteInput>
     <Name>t_wggg</Name>
     <Frames>
-      <string>wggg</string>
+	  <SpriteInputFrame>
+	    <Name>wggg</Name>
+		<DisplayTime>1000</DisplayTime>
+		<FlipX>false</FlipX>
+		<FlipY>false</FlipY>
+		<Rotation>0</Rotation>
+	  </SpriteInputFrame>
     </Frames>
     <FrameRate>0</FrameRate>
-    <Looped>false</Looped>
-    <FlipX>false</FlipX>
-    <FlipY>false</FlipY>
+    <LoopIndex>0</LoopIndex>
   </SpriteInput>
   <SpriteInput>
     <Name>t_ggww</Name>
     <Frames>
-      <string>ggww</string>
+	  <SpriteInputFrame>
+	    <Name>ggww</Name>
+		<DisplayTime>1000</DisplayTime>
+		<FlipX>false</FlipX>
+		<FlipY>false</FlipY>
+		<Rotation>0</Rotation>
+	  </SpriteInputFrame>
     </Frames>
     <FrameRate>0</FrameRate>
-    <Looped>false</Looped>
-    <FlipX>false</FlipX>
-    <FlipY>false</FlipY>
+    <LoopIndex>0</LoopIndex>
   </SpriteInput>
   <SpriteInput>
     <Name>t_gwgw_g</Name>
     <Frames>
-      <string>gwgw_g</string>
+	  <SpriteInputFrame>
+	    <Name>gwgw_g</Name>
+		<DisplayTime>1000</DisplayTime>
+		<FlipX>false</FlipX>
+		<FlipY>false</FlipY>
+		<Rotation>0</Rotation>
+	  </SpriteInputFrame>
     </Frames>
     <FrameRate>0</FrameRate>
-    <Looped>false</Looped>
-    <FlipX>false</FlipX>
-    <FlipY>false</FlipY>
+    <LoopIndex>0</LoopIndex>
   </SpriteInput>
   <SpriteInput>
     <Name>t_gwgw_w</Name>
     <Frames>
-      <string>gwgw_w</string>
+	  <SpriteInputFrame>
+	    <Name>gwgw_w</Name>
+		<DisplayTime>1000</DisplayTime>
+		<FlipX>false</FlipX>
+		<FlipY>false</FlipY>
+		<Rotation>0</Rotation>
+	  </SpriteInputFrame>
     </Frames>
     <FrameRate>0</FrameRate>
-    <Looped>false</Looped>
-    <FlipX>false</FlipX>
-    <FlipY>false</FlipY>
+    <LoopIndex>0</LoopIndex>
   </SpriteInput>
   <SpriteInput>
     <Name>t_gwww</Name>
     <Frames>
-      <string>gwww</string>
+	  <SpriteInputFrame>
+	    <Name>gwww</Name>
+		<DisplayTime>1000</DisplayTime>
+		<FlipX>false</FlipX>
+		<FlipY>false</FlipY>
+		<Rotation>0</Rotation>
+	  </SpriteInputFrame>
     </Frames>
     <FrameRate>0</FrameRate>
-    <Looped>false</Looped>
-    <FlipX>false</FlipX>
-    <FlipY>false</FlipY>
+    <LoopIndex>0</LoopIndex>
   </SpriteInput>
   <SpriteInput>
     <Name>t_wwww</Name>
     <Frames>
-      <string>wwww</string>
+	  <SpriteInputFrame>
+	    <Name>wwww</Name>
+		<DisplayTime>1000</DisplayTime>
+		<FlipX>false</FlipX>
+		<FlipY>false</FlipY>
+		<Rotation>0</Rotation>
+	  </SpriteInputFrame>
     </Frames>
     <FrameRate>0</FrameRate>
-    <Looped>false</Looped>
-    <FlipX>false</FlipX>
-    <FlipY>false</FlipY>
+    <LoopIndex>0</LoopIndex>
   </SpriteInput>
   <SpriteInput>
     <Name>d_flower1</Name>
-    <Frames>
-      <string>flower1_1</string>
-      <string>flower1_2</string>
-      <string>flower1_3</string>
-      <string>flower1_4</string>
+	<Frames>
+	  <SpriteInputFrame>
+	    <Name>flower1_1</Name>
+		<DisplayTime>1000</DisplayTime>
+		<FlipX>false</FlipX>
+		<FlipY>false</FlipY>
+		<Rotation>0</Rotation>
+	  </SpriteInputFrame>
+	  <SpriteInputFrame>
+	    <Name>flower1_2</Name>
+		<DisplayTime>100</DisplayTime>
+		<FlipX>false</FlipX>
+		<FlipY>false</FlipY>
+		<Rotation>0</Rotation>
+	  </SpriteInputFrame>
+	  <SpriteInputFrame>
+	    <Name>flower1_3</Name>
+		<DisplayTime>100</DisplayTime>
+		<FlipX>false</FlipX>
+		<FlipY>false</FlipY>
+		<Rotation>0</Rotation>
+	  </SpriteInputFrame>
+	  <SpriteInputFrame>
+	    <Name>flower1_4</Name>
+		<DisplayTime>100</DisplayTime>
+		<FlipX>false</FlipX>
+		<FlipY>false</FlipY>
+		<Rotation>0</Rotation>
+	  </SpriteInputFrame>
     </Frames>
-    <FrameRate>8</FrameRate>
-    <Looped>true</Looped>
-    <FlipX>false</FlipX>
-    <FlipY>false</FlipY>
+    <FrameRate>0</FrameRate>
+    <LoopIndex>0</LoopIndex>
   </SpriteInput>
 </ArrayOfSpriteInput>
