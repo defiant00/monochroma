@@ -17,7 +17,7 @@ namespace Chromatic.Code.Renderable
 		{
 			this.data = data;
 
-			origin = data.Frames[0].Rect.Size.ToVector2() / 2;
+			origin = data.Frames[0].Rectangle.Size.ToVector2() / 2;
 
 			if (random == null || data.Frames.Length < 2) { Reset(); }
 			else
@@ -30,7 +30,7 @@ namespace Chromatic.Code.Renderable
 		public void Draw(SpriteBatch spriteBatch, Texture2D texture, Vector2 offset, float depth = 0, float rotation = 0)
 		{
 			var f = data.Frames[currFrame];
-			spriteBatch.Draw(texture, offset, f.Rect, Color.White, f.Rotation + rotation, origin, 1, f.Effects, depth);
+			spriteBatch.Draw(texture, offset, f.Rectangle, Color.White, f.Rotation + rotation, origin, 1, f.Effects, depth);
 		}
 
 		public void Update(double ms)

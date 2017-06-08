@@ -93,7 +93,7 @@ namespace GenSpriteMap
                 {
                     Frames = s.Frames.Select(f => new SpriteData.Frame
                     {
-                        Rect = outAreas[indexLookup[f.Name]],
+                        Rectangle = outAreas[indexLookup[f.Name]],
                         DisplayTime = f.DisplayTime,
                         Effects = (f.FlipH ? FlipHorizontally : None) | (f.FlipV ? FlipVertically : None),
                         Rotation = f.Rotation,
