@@ -1,5 +1,7 @@
 ﻿using Chromatic.Code.Renderable;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace Chromatic.Code.GameItem
 {
@@ -7,11 +9,9 @@ namespace Chromatic.Code.GameItem
 	{
 		Chromatic game;
 		bool remove = false;
+        Map map;
 
 		public bool Remove { get { return remove; } }
-
-		Sprite test;
-		Sprite t2;
 
 		public Editor(Chromatic game)
 		{
@@ -21,17 +21,13 @@ namespace Chromatic.Code.GameItem
 		public void Draw(GameTime gameTime)
 		{
 			game.spriteBatch.Begin();
-			test.Draw(game.spriteBatch, game.spriteMapTex, new Vector2(16, 16));
-			for (int i = 0; i < 10000; i++)
-				t2.Draw(game.spriteBatch, game.spriteMapTex, new Vector2(game.random.Next(1280), game.random.Next(720)));
-			//t2.Draw(game.spriteBatch, game.spriteMapTex, new Vector2(21, 16));
+            map.Draw(game.spriteBatch, new Vector2(32, 32));
 			game.spriteBatch.End();
 		}
 
 		public void LoadContent()
 		{
-			test = new Sprite(game.spriteMap["t_gggg"]);
-			t2 = new Sprite(game.spriteMap["d_flower1"]);
+            map = new Map(game, 20, 20, "t_gggg");
 		}
 
 		public void UnloadContent()
@@ -41,8 +37,13 @@ namespace Chromatic.Code.GameItem
 		public void Update(GameTime gameTime)
 		{
 			double ms = gameTime.ElapsedGameTime.TotalMilliseconds;
-			test.Update(ms);
-			t2.Update(ms);
+            map.Update(ms);
+
+            var mouse = Mouse.GetState();
+            if (mouse.LeftButton == ButtonState.Pressed)
+            {
+                Debug.WriteLine((mouse.X / 32) + ", " + (mouse.Y / 32));
+            }
 		}
 	}
 }

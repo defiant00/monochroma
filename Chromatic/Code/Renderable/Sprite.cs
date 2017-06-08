@@ -9,12 +9,14 @@ namespace Chromatic.Code.Renderable
 	{
 		public SpriteData data { get; set; }
 
+        string name;
 		int currFrame;
 		double timeLeft;
 		Vector2 origin;
 
-		public Sprite(SpriteData data, Random random = null)
+		public Sprite(string name, SpriteData data, Random random = null)
 		{
+            this.name = name;
 			this.data = data;
 
 			origin = data.Frames[0].Rectangle.Size.ToVector2() / 2;

@@ -131,28 +131,28 @@
 	<Frames>
 	  <SpriteInputFrame>
 	    <Name>flower1_1</Name>
-		<DisplayTime>200</DisplayTime>
+		<DisplayTime>150</DisplayTime>
 		<FlipH>false</FlipH>
 		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>
 	  </SpriteInputFrame>
 	  <SpriteInputFrame>
 	    <Name>flower1_2</Name>
-		<DisplayTime>200</DisplayTime>
+		<DisplayTime>150</DisplayTime>
 		<FlipH>false</FlipH>
 		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>
 	  </SpriteInputFrame>
 	  <SpriteInputFrame>
 	    <Name>flower1_3</Name>
-		<DisplayTime>200</DisplayTime>
+		<DisplayTime>150</DisplayTime>
 		<FlipH>false</FlipH>
 		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>
 	  </SpriteInputFrame>
 	  <SpriteInputFrame>
 	    <Name>flower1_4</Name>
-		<DisplayTime>200</DisplayTime>
+		<DisplayTime>150</DisplayTime>
 		<FlipH>false</FlipH>
 		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>

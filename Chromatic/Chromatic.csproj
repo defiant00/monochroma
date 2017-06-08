@@ -46,6 +46,7 @@
     <Compile Include="Chromatic.cs" />
     <Compile Include="Code\GameItem\Editor.cs" />
     <Compile Include="Code\GameItem\IGameItem.cs" />
+    <Compile Include="Code\Renderable\Map.cs" />
     <Compile Include="Code\Renderable\Sprite.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -31,6 +31,8 @@ namespace Chromatic
 
         protected override void Initialize()
         {
+            IsMouseVisible = true;
+
             gameItems.Add(new Editor(this));
 
             base.Initialize();
