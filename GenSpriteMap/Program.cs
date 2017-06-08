@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
+using static Microsoft.Xna.Framework.Graphics.SpriteEffects;
 
 namespace GenSpriteMap
 {
@@ -94,8 +95,7 @@ namespace GenSpriteMap
                     {
                         Rect = outAreas[indexLookup[f.Name]],
                         DisplayTime = f.DisplayTime,
-                        FlipX = f.FlipX,
-                        FlipY = f.FlipY,
+                        Effects = (f.FlipH ? FlipHorizontally : None) | (f.FlipV ? FlipVertically : None),
                         Rotation = f.Rotation,
                     }).ToArray(),
                     LoopIndex = s.LoopIndex,

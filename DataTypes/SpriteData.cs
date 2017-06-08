@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace DataTypes
 {
@@ -11,8 +12,7 @@ namespace DataTypes
         {
             public Rectangle Rect { get; set; }
             public double DisplayTime { get; set; }
-            public bool FlipX { get; set; }
-            public bool FlipY { get; set; }
+            public SpriteEffects Effects { get; set; }
             public float Rotation { get; set; }
         }
     }

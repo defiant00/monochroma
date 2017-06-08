@@ -13,8 +13,8 @@ namespace GenSpriteMap
     {
         public string Name { get; set; }
         public double DisplayTime { get; set; }
-        public bool FlipX { get; set; }
-        public bool FlipY { get; set; }
+        public bool FlipH { get; set; }
+        public bool FlipV { get; set; }
         public float Rotation { get; set; }
     }
 }

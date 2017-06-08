@@ -6,8 +6,8 @@
 	  <SpriteInputFrame>
 	    <Name>indicator</Name>
 		<DisplayTime>1000</DisplayTime>
-		<FlipX>false</FlipX>
-		<FlipY>false</FlipY>
+		<FlipH>false</FlipH>
+		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>
 	  </SpriteInputFrame>
     </Frames>
@@ -20,8 +20,8 @@
 	  <SpriteInputFrame>
 	    <Name>corners</Name>
 		<DisplayTime>1000</DisplayTime>
-		<FlipX>false</FlipX>
-		<FlipY>false</FlipY>
+		<FlipH>false</FlipH>
+		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>
 	  </SpriteInputFrame>
     </Frames>
@@ -34,8 +34,8 @@
 	  <SpriteInputFrame>
 	    <Name>gggg</Name>
 		<DisplayTime>1000</DisplayTime>
-		<FlipX>false</FlipX>
-		<FlipY>false</FlipY>
+		<FlipH>false</FlipH>
+		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>
 	  </SpriteInputFrame>
     </Frames>
@@ -48,8 +48,8 @@
 	  <SpriteInputFrame>
 	    <Name>wggg</Name>
 		<DisplayTime>1000</DisplayTime>
-		<FlipX>false</FlipX>
-		<FlipY>false</FlipY>
+		<FlipH>false</FlipH>
+		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>
 	  </SpriteInputFrame>
     </Frames>
@@ -62,8 +62,8 @@
 	  <SpriteInputFrame>
 	    <Name>ggww</Name>
 		<DisplayTime>1000</DisplayTime>
-		<FlipX>false</FlipX>
-		<FlipY>false</FlipY>
+		<FlipH>false</FlipH>
+		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>
 	  </SpriteInputFrame>
     </Frames>
@@ -76,8 +76,8 @@
 	  <SpriteInputFrame>
 	    <Name>gwgw_g</Name>
 		<DisplayTime>1000</DisplayTime>
-		<FlipX>false</FlipX>
-		<FlipY>false</FlipY>
+		<FlipH>false</FlipH>
+		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>
 	  </SpriteInputFrame>
     </Frames>
@@ -90,8 +90,8 @@
 	  <SpriteInputFrame>
 	    <Name>gwgw_w</Name>
 		<DisplayTime>1000</DisplayTime>
-		<FlipX>false</FlipX>
-		<FlipY>false</FlipY>
+		<FlipH>false</FlipH>
+		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>
 	  </SpriteInputFrame>
     </Frames>
@@ -104,8 +104,8 @@
 	  <SpriteInputFrame>
 	    <Name>gwww</Name>
 		<DisplayTime>1000</DisplayTime>
-		<FlipX>false</FlipX>
-		<FlipY>false</FlipY>
+		<FlipH>false</FlipH>
+		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>
 	  </SpriteInputFrame>
     </Frames>
@@ -118,8 +118,8 @@
 	  <SpriteInputFrame>
 	    <Name>wwww</Name>
 		<DisplayTime>1000</DisplayTime>
-		<FlipX>false</FlipX>
-		<FlipY>false</FlipY>
+		<FlipH>false</FlipH>
+		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>
 	  </SpriteInputFrame>
     </Frames>
@@ -131,30 +131,30 @@
 	<Frames>
 	  <SpriteInputFrame>
 	    <Name>flower1_1</Name>
-		<DisplayTime>1000</DisplayTime>
-		<FlipX>false</FlipX>
-		<FlipY>false</FlipY>
+		<DisplayTime>200</DisplayTime>
+		<FlipH>false</FlipH>
+		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>
 	  </SpriteInputFrame>
 	  <SpriteInputFrame>
 	    <Name>flower1_2</Name>
-		<DisplayTime>100</DisplayTime>
-		<FlipX>false</FlipX>
-		<FlipY>false</FlipY>
+		<DisplayTime>200</DisplayTime>
+		<FlipH>false</FlipH>
+		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>
 	  </SpriteInputFrame>
 	  <SpriteInputFrame>
 	    <Name>flower1_3</Name>
-		<DisplayTime>100</DisplayTime>
-		<FlipX>false</FlipX>
-		<FlipY>false</FlipY>
+		<DisplayTime>200</DisplayTime>
+		<FlipH>false</FlipH>
+		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>
 	  </SpriteInputFrame>
 	  <SpriteInputFrame>
 	    <Name>flower1_4</Name>
-		<DisplayTime>100</DisplayTime>
-		<FlipX>false</FlipX>
-		<FlipY>false</FlipY>
+		<DisplayTime>200</DisplayTime>
+		<FlipH>false</FlipH>
+		<FlipV>false</FlipV>
 		<Rotation>0</Rotation>
 	  </SpriteInputFrame>
     </Frames>
