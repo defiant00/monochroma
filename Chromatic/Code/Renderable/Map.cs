@@ -29,22 +29,23 @@ namespace Chromatic.Code.Renderable
 			}
 
 			Decals = new List<Sprite>();
-			for (int i = 0; i < 250; i++)
+			for (int i = 0; i < 1000; i++)
 			{
 				Decals.Add(new Sprite(game.SpriteMap, "d_flower1", game.Random)
 				{
-					Position = new Vector2(game.Random.Next((Width - 1) * 32), game.Random.Next((Height - 1) * 32))
+					Position = new Vector2(game.Random.Next((Width - 1) * 32) + 16, game.Random.Next((Height - 1) * 32) + 16)
 				});
 			}
 		}
 
 		public void Draw(SpriteBatch spriteBatch, Vector2 offset)
 		{
+            Vector2 tileOffset = offset + new Vector2(16, 16);
 			for (int y = 0; y < Height; y++)
 			{
 				for (int x = 0; x < Width; x++)
 				{
-					Tiles[x, y].Draw(spriteBatch, MapTexture, offset);
+					Tiles[x, y].Draw(spriteBatch, MapTexture, tileOffset);
 				}
 			}
 			foreach (var d in Decals) { d.Draw(spriteBatch, MapTexture, offset); }
