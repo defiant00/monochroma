@@ -9,60 +9,60 @@ namespace Chromatic
 {
     public class Chromatic : Game
     {
-        public GraphicsDeviceManager graphics;
-        public SpriteBatch spriteBatch;
-        public Color backColor = new Color(0f, 0.1f, 0.3f, 1f);
-        List<IGameItem> gameItems = new List<IGameItem>();
-        public Random random = new Random();
+        public GraphicsDeviceManager Graphics;
+        public SpriteBatch SpriteBatch;
+        public Color BackColor = new Color(0f, 0.1f, 0.3f, 1f);
+        List<IGameItem> GameItems = new List<IGameItem>();
+        public Random Random = new Random();
         public Matrix WPVMatrix;
 
-        public Dictionary<string, SpriteData> spriteMap;
-        public Texture2D spriteMapTex;
+        public Dictionary<string, SpriteData> SpriteMap;
+        public Texture2D SpriteMapTex;
 
         public Chromatic()
         {
-            graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+            Graphics = new GraphicsDeviceManager(this);
+            Graphics.PreferredBackBufferWidth = 1280;
+            Graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
 
-            WPVMatrix = Matrix.CreateOrthographicOffCenter(0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 0, -1, 1);
+            WPVMatrix = Matrix.CreateOrthographicOffCenter(0, Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight, 0, -1, 1);
         }
 
         protected override void Initialize()
         {
             IsMouseVisible = true;
 
-            gameItems.Add(new Editor(this));
+            GameItems.Add(new Editor(this));
 
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            spriteMap = Content.Load<Dictionary<string, SpriteData>>("Data\\sprites");
-            spriteMapTex = Content.Load<Texture2D>("Images\\sprites");
+            SpriteMap = Content.Load<Dictionary<string, SpriteData>>("Data\\sprites");
+            SpriteMapTex = Content.Load<Texture2D>("Images\\sprites");
 
-            foreach (var item in gameItems) { item.LoadContent(); }
+            foreach (var item in GameItems) { item.LoadContent(); }
         }
 
         protected override void UnloadContent()
         {
-            foreach (var item in gameItems) { item.UnloadContent(); }
+            foreach (var item in GameItems) { item.UnloadContent(); }
         }
 
         protected override void Update(GameTime gameTime)
         {
-            for (int i = gameItems.Count - 1; i >= 0; i--)
+            for (int i = GameItems.Count - 1; i >= 0; i--)
             {
-                if (gameItems[i].Remove)
+                if (GameItems[i].Remove)
                 {
-                    gameItems[i].UnloadContent();
-                    gameItems.RemoveAt(i);
+                    GameItems[i].UnloadContent();
+                    GameItems.RemoveAt(i);
                 }
-                else { gameItems[i].Update(gameTime); }
+                else { GameItems[i].Update(gameTime); }
             }
 
             Window.Title = (gameTime.IsRunningSlowly ? "SLOW!" : "Fine");
@@ -72,9 +72,9 @@ namespace Chromatic
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(backColor);
+            GraphicsDevice.Clear(BackColor);
 
-            foreach (var item in gameItems) { item.Draw(gameTime); }
+            foreach (var item in GameItems) { item.Draw(gameTime); }
 
             base.Draw(gameTime);
         }
@@ -82,7 +82,7 @@ namespace Chromatic
         public void AddItem(IGameItem item)
         {
             item.LoadContent();
-            gameItems.Add(item);
+            GameItems.Add(item);
         }
     }
 }

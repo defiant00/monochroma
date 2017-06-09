@@ -2,60 +2,71 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 
 namespace Chromatic.Code.Renderable
 {
 	public class Sprite
 	{
-		public SpriteData data { get; set; }
+		Dictionary<string, SpriteData> AllData;
+		SpriteData CurrentData;
 
-        string name;
-		int currFrame;
-		double timeLeft;
-		Vector2 origin;
+		string _Animation;
+		public string Animation { get { return _Animation; } }
+		public Vector2 Position;
+		public float Z;
+		public float Rotation;
 
-		public Sprite(string name, SpriteData data, Random random = null)
+		int CurrFrame;
+		double TimeLeft;
+		Vector2 Origin;
+
+		public Sprite(Dictionary<string, SpriteData> data, string animation, Random random = null)
 		{
-            this.name = name;
-			this.data = data;
+			AllData = data;
+			Play(animation, random);
+			Origin = CurrentData.Frames[0].Rectangle.Size.ToVector2() / 2;
+		}
 
-			origin = data.Frames[0].Rectangle.Size.ToVector2() / 2;
-
-			if (random == null || data.Frames.Length < 2) { Reset(); }
+		public void Play(string animation, Random random = null)
+		{
+			_Animation = animation;
+			CurrentData = AllData[_Animation];
+			if (random == null || CurrentData.Frames.Length < 2) { Reset(); }
 			else
 			{
-				currFrame = random.Next(data.Frames.Length);
-				timeLeft = random.NextDouble() * data.Frames[currFrame].DisplayTime;
+				CurrFrame = random.Next(CurrentData.Frames.Length);
+				TimeLeft = random.NextDouble() * CurrentData.Frames[CurrFrame].DisplayTime;
 			}
 		}
 
-		public void Draw(SpriteBatch spriteBatch, Texture2D texture, Vector2 offset, float depth = 0, float rotation = 0)
+		public void Draw(SpriteBatch spriteBatch, Texture2D texture, Vector2 offset)
 		{
-			var f = data.Frames[currFrame];
-			spriteBatch.Draw(texture, offset, f.Rectangle, Color.White, f.Rotation + rotation, origin, 1, f.Effects, depth);
+			var f = CurrentData.Frames[CurrFrame];
+			spriteBatch.Draw(texture, Position + offset, f.Rectangle, Color.White, Rotation + f.Rotation, Origin, 1, f.Effects, Z);
 		}
 
 		public void Update(double ms)
 		{
-			if (data.Frames.Length > 1)
+			if (CurrentData.Frames.Length > 1)
 			{
-				timeLeft -= ms;
-				while (timeLeft < 0)
+				TimeLeft -= ms;
+				while (TimeLeft < 0)
 				{
-					currFrame++;
-					if (currFrame >= data.Frames.Length)
+					CurrFrame++;
+					if (CurrFrame >= CurrentData.Frames.Length)
 					{
-						currFrame = data.LoopIndex;
+						CurrFrame = CurrentData.LoopIndex;
 					}
-					timeLeft += data.Frames[currFrame].DisplayTime;
+					TimeLeft += CurrentData.Frames[CurrFrame].DisplayTime;
 				}
 			}
 		}
 
 		public void Reset()
 		{
-			currFrame = 0;
-			timeLeft = data.Frames[0].DisplayTime;
+			CurrFrame = 0;
+			TimeLeft = CurrentData.Frames[0].DisplayTime;
 		}
 	}
 }
