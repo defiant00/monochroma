@@ -44,6 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Chromatic.cs" />
+    <Compile Include="Code\Extensions.cs" />
     <Compile Include="Code\GameItem\Editor.cs" />
     <Compile Include="Code\GameItem\IGameItem.cs" />
     <Compile Include="Code\Renderable\Map.cs" />

@@ -20,14 +20,15 @@ namespace Chromatic.Code.GameItem
 
         public void Draw(GameTime gameTime)
         {
+			Vector2 floorOffset = Offset.Floor();
             Game.SpriteBatch.Begin();
-            Map.Draw(Game.SpriteBatch, Offset);
+            Map.Draw(Game.SpriteBatch, floorOffset);
             Game.SpriteBatch.End();
         }
 
         public void LoadContent()
         {
-            Map = new Map(Game, 20, 20, "t_gggg");
+            Map = new Map(Game, 30, 20, "t_gggg");
         }
 
         public void UnloadContent()
@@ -39,8 +40,9 @@ namespace Chromatic.Code.GameItem
             double ms = gameTime.ElapsedGameTime.TotalMilliseconds;
             Map.Update(ms);
 
-            int offX = (int)Offset.X;
-            int offY = (int)Offset.Y;
+			Vector2 floorOffset = Offset.Floor();
+			int offX = (int)floorOffset.X;
+			int offY = (int)floorOffset.Y;
 
             var mouse = Mouse.GetState();
             int mx = mouse.X - offX;
