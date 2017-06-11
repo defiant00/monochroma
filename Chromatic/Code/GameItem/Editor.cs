@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Chromatic.Code.GameItem
 {
-    class Editor : IGameItem
+	class Editor : IGameItem
     {
         Chromatic Game;
         bool _Remove = false;
@@ -21,17 +21,30 @@ namespace Chromatic.Code.GameItem
         public void Draw(GameTime gameTime)
         {
 			Vector2 floorOffset = Offset.Floor();
+			Game.GraphicsDevice.SetRenderTarget(Game.SpriteTarget);
+			Game.GraphicsDevice.Clear(Game.BackColor);
             Game.SpriteBatch.Begin();
             Map.Draw(Game.SpriteBatch, floorOffset);
             Game.SpriteBatch.End();
+
+			Game.GraphicsDevice.SetRenderTarget(Game.LightTarget);
+			Game.GraphicsDevice.Clear(Color.Black);
+			Game.RadialEffect.Draw(new Rectangle(0, 0, 800, 600), new Color(1f, 0, 0), Offset);
+			Game.RadialEffect.Draw(new Rectangle(300, 0, 800, 600), new Color(0, 0.4f, 0), Offset);
+			Game.RadialEffect.Draw(new Rectangle(150, 150, 800, 600), new Color(0, 0, 1f), Offset);
+
+			Game.SolidColorEffect.Draw(new Rectangle(0, 0, 200, 100), new Color(1f, 0, 1), Offset);
+
+			Game.GraphicsDevice.SetRenderTarget(Game.InterfaceTarget);
+			Game.GraphicsDevice.Clear(Color.Transparent);
         }
 
         public void LoadContent()
         {
-            Map = new Map(Game, 30, 20, "t_gggg");
-        }
+            Map = new Map(Game, 42, 24, "t_gggg");
+		}
 
-        public void UnloadContent()
+		public void UnloadContent()
         {
         }
 

@@ -1,4 +1,5 @@
 ﻿using Chromatic.Code.GameItem;
+using Chromatic.Code.Renderable.Effects;
 using DataTypes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,14 +20,27 @@ namespace Chromatic
         public Dictionary<string, SpriteData> SpriteMap;
         public Texture2D SpriteMapTex;
 
+		public Rectangle OutputRectangle;
+		public RenderTarget2D SpriteTarget, LightTarget, InterfaceTarget;
+		public DynamicLightEffect DynamicLightEffect;
+		public RadialEffect RadialEffect;
+		public SolidColorEffect SolidColorEffect;
+
         public Chromatic()
         {
             Graphics = new GraphicsDeviceManager(this);
             Graphics.PreferredBackBufferWidth = 1280;
             Graphics.PreferredBackBufferHeight = 720;
+
+			DynamicLightEffect = new DynamicLightEffect(this);
+			RadialEffect = new RadialEffect(this);
+			SolidColorEffect = new SolidColorEffect(this);
+
+			OutputRectangle = new Rectangle(0, 0, 1280, 720);
+
             Content.RootDirectory = "Content";
 
-            WPVMatrix = Matrix.CreateOrthographicOffCenter(0, Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight, 0, -1, 1);
+            WPVMatrix = Matrix.CreateOrthographicOffCenter(0, 1280, 720, 0, -1, 1);
         }
 
         protected override void Initialize()
@@ -45,7 +59,15 @@ namespace Chromatic
             SpriteMap = Content.Load<Dictionary<string, SpriteData>>("Data\\sprites");
             SpriteMapTex = Content.Load<Texture2D>("Images\\sprites");
 
-            foreach (var item in GameItems) { item.LoadContent(); }
+			SpriteTarget = new RenderTarget2D(GraphicsDevice, 1280, 720);
+			LightTarget = new RenderTarget2D(GraphicsDevice, 1280, 720);
+			InterfaceTarget = new RenderTarget2D(GraphicsDevice, 1280, 720);
+
+			DynamicLightEffect.LoadContent();
+			RadialEffect.LoadContent();
+			SolidColorEffect.LoadContent();
+
+			foreach (var item in GameItems) { item.LoadContent(); }
         }
 
         protected override void UnloadContent()
@@ -72,11 +94,17 @@ namespace Chromatic
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(BackColor);
-
             foreach (var item in GameItems) { item.Draw(gameTime); }
 
-            base.Draw(gameTime);
+			GraphicsDevice.SetRenderTarget(null);
+			GraphicsDevice.Clear(BackColor);
+			DynamicLightEffect.Draw(SpriteTarget, LightTarget);
+
+			SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
+			SpriteBatch.Draw(InterfaceTarget, OutputRectangle, Color.White);
+			SpriteBatch.End();
+
+			base.Draw(gameTime);
         }
 
         public void AddItem(IGameItem item)

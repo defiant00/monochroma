@@ -31,3 +31,21 @@
 /processorParam:TextureFormat=Color
 /build:Images/sprites.png
 
+#begin Effects/DynamicLight.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/DynamicLight.fx
+
+#begin Effects/Radial.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/Radial.fx
+
+#begin Effects/SolidColor.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/SolidColor.fx
+
