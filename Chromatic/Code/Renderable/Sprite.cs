@@ -25,7 +25,7 @@ namespace Chromatic.Code.Renderable
 		{
 			AllData = data;
 			Play(animation, random);
-			Origin = CurrentData.Frames[0].Rectangle.Size.ToVector2() / 2;
+			Origin = (CurrentData.Frames[0].Rectangle.Size.ToVector2() / 2).Floor();
 		}
 
 		public void Play(string animation, Random random = null)
