@@ -47,9 +47,9 @@
     <Compile Include="Code\Extensions.cs" />
     <Compile Include="Code\GameItem\Editor.cs" />
     <Compile Include="Code\GameItem\IGameItem.cs" />
+    <Compile Include="Code\InputState.cs" />
     <Compile Include="Code\Renderable\Effects\DynamicLightEffect.cs" />
     <Compile Include="Code\Renderable\Effects\RadialEffect.cs" />
-    <Compile Include="Code\Renderable\Effects\SolidColorEffect.cs" />
     <Compile Include="Code\Renderable\Map.cs" />
     <Compile Include="Code\Renderable\Sprite.cs" />
     <Compile Include="Program.cs" />

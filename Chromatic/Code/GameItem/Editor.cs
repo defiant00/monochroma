@@ -28,12 +28,14 @@ namespace Chromatic.Code.GameItem
             Game.SpriteBatch.End();
 
 			Game.GraphicsDevice.SetRenderTarget(Game.LightTarget);
-			Game.GraphicsDevice.Clear(Color.Black);
+			Game.GraphicsDevice.Clear(Color.Gray);
 			Game.RadialEffect.Draw(new Rectangle(0, 0, 800, 600), new Color(1f, 0, 0), Offset);
 			Game.RadialEffect.Draw(new Rectangle(300, 0, 800, 600), new Color(0, 0.4f, 0), Offset);
 			Game.RadialEffect.Draw(new Rectangle(150, 150, 800, 600), new Color(0, 0, 1f), Offset);
 
-			Game.SolidColorEffect.Draw(new Rectangle(0, 0, 200, 100), new Color(1f, 0, 1), Offset);
+			Game.SpriteBatch.Begin();
+			Game.RectangleSprite.Draw(Game.SpriteBatch, Game.SpriteMapTex, new Rectangle(Offset.ToPoint(), new Point(300, 120)), Color.White);
+			Game.SpriteBatch.End();
 
 			Game.GraphicsDevice.SetRenderTarget(Game.InterfaceTarget);
 			Game.GraphicsDevice.Clear(Color.Transparent);
@@ -57,13 +59,14 @@ namespace Chromatic.Code.GameItem
 			int offX = (int)floorOffset.X;
 			int offY = (int)floorOffset.Y;
 
-            var mouse = Mouse.GetState();
-            int mx = mouse.X - offX;
-            int my = mouse.Y - offY;
+            
+
+            int mx = Game.Input.Mouse.X - offX;
+            int my = Game.Input.Mouse.Y - offY;
             int tx = mx / 32;
             int ty = my / 32;
 
-            if (mouse.LeftButton == ButtonState.Pressed && mx > -1 && my > -1 && tx < Map.Width && ty < Map.Height)
+            if (Game.Input.Mouse.LeftButton == InputState.ButtonState.Pressed && mx > -1 && my > -1 && tx < Map.Width && ty < Map.Height)
             {
                 var t = Map.Tiles[tx, ty];
                 t.Play("t_wwww");

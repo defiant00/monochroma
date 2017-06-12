@@ -46,6 +46,12 @@ namespace Chromatic.Code.Renderable
 			spriteBatch.Draw(texture, Position + offset, f.Rectangle, Color.White, Rotation + f.Rotation, Origin, 1, f.Effects, Z);
 		}
 
+		public void Draw(SpriteBatch spriteBatch, Texture2D texture, Rectangle destRect, Color color)
+		{
+			var f = CurrentData.Frames[CurrFrame];
+			spriteBatch.Draw(texture, destRect, f.Rectangle, color);
+		}
+
 		public void Update(double ms)
 		{
 			if (CurrentData.Frames.Length > 1)

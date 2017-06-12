@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfSpriteInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SpriteInput>
+    <Name>pixel</Name>
+    <Frames>
+	  <SpriteInputFrame>
+	    <Name>pixel</Name>
+		<DisplayTime>1000</DisplayTime>
+		<FlipH>false</FlipH>
+		<FlipV>false</FlipV>
+		<Rotation>0</Rotation>
+	  </SpriteInputFrame>
+    </Frames>
+    <FrameRate>0</FrameRate>
+    <LoopIndex>0</LoopIndex>
+  </SpriteInput>
+  <SpriteInput>
     <Name>indicator</Name>
     <Frames>
 	  <SpriteInputFrame>
