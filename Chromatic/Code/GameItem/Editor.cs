@@ -39,7 +39,7 @@ namespace Chromatic.Code.GameItem
                 Game.GraphicsDevice.SetRenderTarget(Game.SpriteTarget);
                 Game.GraphicsDevice.Clear(Game.BackColor);
                 Game.SpriteBatch.Begin();
-                Map.Draw(Game.SpriteBatch, floorOffset);
+                Map.Draw(Game.SpriteBatch, floorOffset, true);
                 Game.SpriteBatch.End();
 
                 Game.GraphicsDevice.SetRenderTarget(Game.LightTarget);
@@ -129,10 +129,14 @@ namespace Chromatic.Code.GameItem
                 int offX = (int)floorOffset.X;
                 int offY = (int)floorOffset.Y;
 
-                int mx = Game.Input.Mouse.X - offX;
-                int my = Game.Input.Mouse.Y - offY;
-                int tx = mx / 32;
-                int ty = my / 32;
+                int mX = Game.Input.Mouse.X - offX;
+                int mY = Game.Input.Mouse.Y - offY;
+                int blockX = mX / 32;
+                int blockY = mY / 32;
+                int mTileX = mX + 16;
+                int mTileY = mY + 16;
+                int tileX = mTileX / 32;
+                int tileY = mTileY / 32;
 
                 if (Game.Input.Mouse.Y < 40)
                 {
@@ -148,11 +152,15 @@ namespace Chromatic.Code.GameItem
                         }
                     }
                 }
-                else if (Game.Input.Mouse.LeftButton == InputState.ButtonState.Pressed && mx > -1 && my > -1 && tx < Map.Width && ty < Map.Height)
+                else if (Game.Input.Mouse.LeftButton == InputState.ButtonState.Pressed && mTileX > -1 && mTileY > -1 && tileX <= Map.Width && tileY <= Map.Height)
                 {
-                    var t = Map.Tiles[tx, ty];
+                    var t = Map.Tiles[tileX, tileY];
                     t.Play(CurrentTile.Animation);
                     t.Rotation = CurrentTile.Rotation;
+                }
+                else if (Game.Input.Mouse.RightButton == InputState.ButtonState.JustPressed && mX > -1 && mY > -1 && blockX < Map.Width && blockY < Map.Height)
+                {
+                    Map.Blocks[blockX, blockY] = !Map.Blocks[blockX, blockY];
                 }
 
                 float change = (float)ms / 5;

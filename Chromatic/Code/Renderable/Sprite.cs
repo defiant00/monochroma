@@ -47,10 +47,15 @@ namespace Chromatic.Code.Renderable
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Texture2D texture, Vector2 offset)
+        public void Draw(SpriteBatch spriteBatch, Texture2D texture, Vector2 offset, Color color)
         {
             var f = CurrentData.Frames[CurrFrame];
-            spriteBatch.Draw(texture, Position + offset, f.Rectangle, Color.White, Rotation + f.Rotation, Origin, 1, f.Effects, Z);
+            spriteBatch.Draw(texture, Position + offset, f.Rectangle, color, Rotation + f.Rotation, Origin, 1, f.Effects, Z);
+        }
+
+        public void Draw(SpriteBatch spriteBatch, Texture2D texture, Vector2 offset)
+        {
+            Draw(spriteBatch, texture, offset, Color.White);
         }
 
         public void Draw(SpriteBatch spriteBatch, Texture2D texture, Rectangle destRect, Color color)
