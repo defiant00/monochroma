@@ -9,7 +9,7 @@ namespace Chromatic.Code.Renderable
         public int Width, Height;
         public Sprite[,] Tiles;
         public bool[,] Blocks;
-        List<Sprite> Decals;
+        public List<Sprite> Decals;
         Texture2D MapTexture;
         Sprite Block;
 
@@ -32,18 +32,10 @@ namespace Chromatic.Code.Renderable
             }
 
             Blocks = new bool[Width, Height];
-
             Decals = new List<Sprite>();
-            for (int i = 0; i < 1000; i++)
-            {
-                Decals.Add(new Sprite(game.SpriteMap, "d_flower1", game.Random)
-                {
-                    Position = new Vector2(game.Random.Next((Width) * 32), game.Random.Next((Height) * 32))
-                });
-            }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 offset, bool drawBlocks = false)
+        public void Draw(SpriteBatch spriteBatch, Vector2 offset, bool drawDecals = true, bool drawBlocks = false)
         {
             for (int y = Height; y >= 0; y--)
             {
@@ -52,7 +44,7 @@ namespace Chromatic.Code.Renderable
                     Tiles[x, y].Draw(spriteBatch, MapTexture, offset);
                 }
             }
-            foreach (var d in Decals) { d.Draw(spriteBatch, MapTexture, offset); }
+            if (drawDecals) { foreach (var d in Decals) { d.Draw(spriteBatch, MapTexture, offset); } }
             if (drawBlocks)
             {
                 Vector2 blockOffset = offset + new Vector2(16, 16);

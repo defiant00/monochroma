@@ -1,5 +1,6 @@
 ﻿using Chromatic.Code.Renderable;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -12,17 +13,29 @@ namespace Chromatic.Code.GameItem
         enum State
         {
             Main,
-            SelectTile
+            SelectTile,
+            SelectDecal,
         }
-        State CurState;
+        State CurState = State.Main;
+
+        enum PlacementMode
+        {
+            Tile,
+            Decal,
+        }
+        PlacementMode CurPlacementMode = PlacementMode.Tile;
 
         Chromatic Game;
         bool _Remove = false;
         Map Map;
-        Vector2 Offset;
-
+        Vector2 Offset = new Vector2(18, 60);
         List<Sprite> TileSprites;
+        List<Sprite> DecalSprites;
         Sprite CurrentTile;
+        Sprite CurrentDecal;
+        SpriteFont Font;
+        bool DrawBlocks = true;
+        bool DrawDecals = true;
 
         public bool Remove { get { return _Remove; } }
 
@@ -39,7 +52,7 @@ namespace Chromatic.Code.GameItem
                 Game.GraphicsDevice.SetRenderTarget(Game.SpriteTarget);
                 Game.GraphicsDevice.Clear(Game.BackColor);
                 Game.SpriteBatch.Begin();
-                Map.Draw(Game.SpriteBatch, floorOffset, true);
+                Map.Draw(Game.SpriteBatch, floorOffset, DrawDecals, DrawBlocks);
                 Game.SpriteBatch.End();
 
                 Game.GraphicsDevice.SetRenderTarget(Game.LightTarget);
@@ -51,6 +64,8 @@ namespace Chromatic.Code.GameItem
                 Game.SpriteBatch.Begin();
                 Game.RectangleSprite.Draw(Game.SpriteBatch, Game.SpriteMapTex, new Rectangle(0, 0, 1280, 40), Color.Black);
                 CurrentTile.Draw(Game.SpriteBatch, Game.SpriteMapTex, Vector2.Zero);
+                CurrentDecal.Draw(Game.SpriteBatch, Game.SpriteMapTex, Vector2.Zero);
+                Game.SpriteBatch.DrawString(Font, "(B)locks: " + DrawBlocks + "   De(c)als: " + DrawDecals + "   (P)lacement: " + CurPlacementMode, new Vector2(80, 12), Color.White);
                 Game.SpriteBatch.End();
             }
             else if (CurState == State.SelectTile)
@@ -68,14 +83,32 @@ namespace Chromatic.Code.GameItem
                 Game.GraphicsDevice.SetRenderTarget(Game.InterfaceTarget);
                 Game.GraphicsDevice.Clear(Color.Transparent);
             }
+            else if (CurState == State.SelectDecal)
+            {
+                Game.GraphicsDevice.SetRenderTarget(Game.SpriteTarget);
+                Game.GraphicsDevice.Clear(Game.BackColor);
+
+                Game.SpriteBatch.Begin();
+                foreach (var d in DecalSprites) { d.Draw(Game.SpriteBatch, Game.SpriteMapTex, Vector2.Zero); }
+                Game.SpriteBatch.End();
+
+                Game.GraphicsDevice.SetRenderTarget(Game.LightTarget);
+                Game.GraphicsDevice.Clear(Color.White);
+
+                Game.GraphicsDevice.SetRenderTarget(Game.InterfaceTarget);
+                Game.GraphicsDevice.Clear(Color.Transparent);
+            }
         }
 
         public void LoadContent()
         {
             Map = new Map(Game, 42, 24, "t_gggg");
             CurrentTile = new Sprite(Game.SpriteMap, "t_wwww") { Position = new Vector2(17, 17) };
+            CurrentDecal = new Sprite(Game.SpriteMap, "d_flower1") { Position = new Vector2(50, 17) };
+            Font = Game.Content.Load<SpriteFont>("Fonts\\Arial");
 
             TileSprites = FitSprites("t_");
+            DecalSprites = FitSprites("d_");
         }
 
         private List<Sprite> FitSprites(string prefix)
@@ -121,7 +154,10 @@ namespace Chromatic.Code.GameItem
         {
             double ms = gameTime.ElapsedGameTime.TotalMilliseconds;
             Map.Update(ms);
+            CurrentTile.Update(ms);
+            CurrentDecal.Update(ms);
             foreach (var t in TileSprites) { t.Update(ms); }
+            foreach (var d in DecalSprites) { d.Update(ms); }
 
             if (CurState == State.Main)
             {
@@ -151,24 +187,56 @@ namespace Chromatic.Code.GameItem
                             CurrentTile.Rotation = (CurrentTile.Rotation + MathHelper.PiOver2) % MathHelper.TwoPi;
                         }
                     }
+                    else if (Game.Input.Mouse.X < 68 && Game.Input.Mouse.LeftButton == InputState.ButtonState.JustPressed)
+                    {
+                        CurState = State.SelectDecal;
+                    }
                 }
-                else if (Game.Input.Mouse.LeftButton == InputState.ButtonState.Pressed && mTileX > -1 && mTileY > -1 && tileX <= Map.Width && tileY <= Map.Height)
+                else
                 {
-                    var t = Map.Tiles[tileX, tileY];
-                    t.Play(CurrentTile.Animation);
-                    t.Rotation = CurrentTile.Rotation;
-                }
-                else if (Game.Input.Mouse.RightButton == InputState.ButtonState.JustPressed && mX > -1 && mY > -1 && blockX < Map.Width && blockY < Map.Height)
-                {
-                    Map.Blocks[blockX, blockY] = !Map.Blocks[blockX, blockY];
+                    if (CurPlacementMode == PlacementMode.Tile)
+                    {
+                        if (Game.Input.Mouse.LeftButton == InputState.ButtonState.Pressed && mTileX > -1 && mTileY > -1 && tileX <= Map.Width && tileY <= Map.Height)
+                        {
+                            var t = Map.Tiles[tileX, tileY];
+                            t.Play(CurrentTile.Animation);
+                            t.Rotation = CurrentTile.Rotation;
+                        }
+                        else if (Game.Input.Mouse.RightButton == InputState.ButtonState.JustPressed && mX > -1 && mY > -1 && blockX < Map.Width && blockY < Map.Height)
+                        {
+                            Map.Blocks[blockX, blockY] = !Map.Blocks[blockX, blockY];
+                        }
+                    }
+                    else if (CurPlacementMode == PlacementMode.Decal)
+                    {
+                        if (Game.Input.Mouse.LeftButton == InputState.ButtonState.JustPressed)
+                        {
+                            Map.Decals.Add(new Sprite(Game.SpriteMap, CurrentDecal.Animation, Game.Random) { Position = new Vector2(mX, mY) });
+                            //Map.Decals = Map.Decals.OrderBy(d => d.Position.Y).ToList();
+                            Map.Decals.Sort((a, b) => (int)(a.Position.Y - b.Position.Y));
+                        }
+                    }
                 }
 
                 float change = (float)ms / 5;
-                var kbd = Keyboard.GetState();
-                if (kbd.IsKeyDown(Keys.W)) { Offset.Y += change; }
-                if (kbd.IsKeyDown(Keys.S)) { Offset.Y -= change; }
-                if (kbd.IsKeyDown(Keys.A)) { Offset.X += change; }
-                if (kbd.IsKeyDown(Keys.D)) { Offset.X -= change; }
+
+                if (Game.Input.Keyboard.IsDown(Keys.W)) { Offset.Y += change; }
+                if (Game.Input.Keyboard.IsDown(Keys.S)) { Offset.Y -= change; }
+                if (Game.Input.Keyboard.IsDown(Keys.A)) { Offset.X += change; }
+                if (Game.Input.Keyboard.IsDown(Keys.D)) { Offset.X -= change; }
+
+                if (Game.Input.Keyboard[Keys.B] == InputState.ButtonState.JustPressed)
+                {
+                    DrawBlocks = !DrawBlocks;
+                }
+                if (Game.Input.Keyboard[Keys.C] == InputState.ButtonState.JustPressed)
+                {
+                    DrawDecals = !DrawDecals;
+                }
+                if (Game.Input.Keyboard[Keys.P] == InputState.ButtonState.JustPressed)
+                {
+                    CurPlacementMode = CurPlacementMode == PlacementMode.Tile ? PlacementMode.Decal : PlacementMode.Tile;
+                }
             }
             else if (CurState == State.SelectTile)
             {
@@ -178,6 +246,18 @@ namespace Chromatic.Code.GameItem
                     if (t != null)
                     {
                         CurrentTile.Play(t.Animation);
+                        CurState = State.Main;
+                    }
+                }
+            }
+            else if (CurState == State.SelectDecal)
+            {
+                if (Game.Input.Mouse.LeftButton == InputState.ButtonState.JustPressed)
+                {
+                    var d = DecalSprites.FirstOrDefault(s => s.Contains(Game.Input.Mouse.X, Game.Input.Mouse.Y));
+                    if (d != null)
+                    {
+                        CurrentDecal.Play(d.Animation);
                         CurState = State.Main;
                     }
                 }

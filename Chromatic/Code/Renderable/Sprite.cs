@@ -25,7 +25,6 @@ namespace Chromatic.Code.Renderable
         {
             AllData = data;
             Play(animation, random);
-            Origin = (CurrentData.Frames[0].Rectangle.Size.ToVector2() / 2).Floor();
         }
 
         public bool Contains(int x, int y)
@@ -39,6 +38,7 @@ namespace Chromatic.Code.Renderable
         {
             _Animation = animation;
             CurrentData = AllData[_Animation];
+            Origin = (CurrentData.Frames[0].Rectangle.Size.ToVector2() / 2).Floor();
             if (random == null || CurrentData.Frames.Length < 2) { Reset(); }
             else
             {
