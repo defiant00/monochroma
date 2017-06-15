@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Chromatic.Code.Renderable
 {
-    class Map
+    public class Map
     {
         public int Width, Height;
         public Sprite[,] Tiles;
@@ -12,8 +12,6 @@ namespace Chromatic.Code.Renderable
         public List<Sprite> Decals;
         Texture2D MapTexture;
         Sprite Block;
-
-        public Map() { }
 
         public Map(Chromatic game, int width, int height, string fill)
         {

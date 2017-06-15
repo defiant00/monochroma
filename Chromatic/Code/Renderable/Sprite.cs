@@ -14,7 +14,6 @@ namespace Chromatic.Code.Renderable
         string _Animation;
         public string Animation { get { return _Animation; } }
         public Vector2 Position;
-        public float Z;
         public float Rotation;
 
         int CurrFrame;
@@ -50,7 +49,7 @@ namespace Chromatic.Code.Renderable
         public void Draw(SpriteBatch spriteBatch, Texture2D texture, Vector2 offset, Color color)
         {
             var f = CurrentData.Frames[CurrFrame];
-            spriteBatch.Draw(texture, Position + offset, f.Rectangle, color, Rotation + f.Rotation, Origin, 1, f.Effects, Z);
+            spriteBatch.Draw(texture, Position + offset, f.Rectangle, color, Rotation + f.Rotation, Origin, 1, f.Effects, 0);
         }
 
         public void Draw(SpriteBatch spriteBatch, Texture2D texture, Vector2 offset)

@@ -48,6 +48,7 @@
     <Compile Include="Code\GameItem\Editor.cs" />
     <Compile Include="Code\GameItem\IGameItem.cs" />
     <Compile Include="Code\InputState.cs" />
+    <Compile Include="Code\LevelIO.cs" />
     <Compile Include="Code\Renderable\Effects\DynamicLightEffect.cs" />
     <Compile Include="Code\Renderable\Effects\RadialEffect.cs" />
     <Compile Include="Code\Renderable\Map.cs" />
@@ -59,7 +60,11 @@
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="MonoGame.Framework.Content.Pipeline">
+      <HintPath>..\..\..\Program Files (x86)\MSBuild\MonoGame\v3.0\Tools\MonoGame.Framework.Content.Pipeline.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>

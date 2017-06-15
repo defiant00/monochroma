@@ -1,10 +1,12 @@
 ﻿using Chromatic.Code.Renderable;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Intermediate;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 
 namespace Chromatic.Code.GameItem
 {
@@ -187,9 +189,16 @@ namespace Chromatic.Code.GameItem
                             CurrentTile.Rotation = (CurrentTile.Rotation + MathHelper.PiOver2) % MathHelper.TwoPi;
                         }
                     }
-                    else if (Game.Input.Mouse.X < 68 && Game.Input.Mouse.LeftButton == InputState.ButtonState.JustPressed)
+                    else if (Game.Input.Mouse.X < 68)
                     {
-                        CurState = State.SelectDecal;
+                        if (Game.Input.Mouse.LeftButton == InputState.ButtonState.JustPressed)
+                        {
+                            CurState = State.SelectDecal;
+                        }
+                        else if (Game.Input.Mouse.RightButton == InputState.ButtonState.JustPressed)
+                        {
+                            CurrentDecal.Rotation = (CurrentDecal.Rotation + MathHelper.PiOver2) % MathHelper.TwoPi;
+                        }
                     }
                 }
                 else
@@ -211,9 +220,20 @@ namespace Chromatic.Code.GameItem
                     {
                         if (Game.Input.Mouse.LeftButton == InputState.ButtonState.JustPressed)
                         {
-                            Map.Decals.Add(new Sprite(Game.SpriteMap, CurrentDecal.Animation, Game.Random) { Position = new Vector2(mX, mY) });
-                            //Map.Decals = Map.Decals.OrderBy(d => d.Position.Y).ToList();
+                            Map.Decals.Add(new Sprite(Game.SpriteMap, CurrentDecal.Animation, Game.Random)
+                            {
+                                Position = new Vector2(mX, mY),
+                                Rotation = CurrentDecal.Rotation,
+                            });
                             Map.Decals.Sort((a, b) => (int)(a.Position.Y - b.Position.Y));
+                        }
+                        else if (Game.Input.Mouse.RightButton == InputState.ButtonState.JustPressed)
+                        {
+                            var decal = Map.Decals.LastOrDefault(d => d.Animation == CurrentDecal.Animation && d.Contains(mX, mY));
+                            if (decal != null)
+                            {
+                                Map.Decals.Remove(decal);
+                            }
                         }
                     }
                 }
@@ -236,6 +256,30 @@ namespace Chromatic.Code.GameItem
                 if (Game.Input.Keyboard[Keys.P] == InputState.ButtonState.JustPressed)
                 {
                     CurPlacementMode = CurPlacementMode == PlacementMode.Tile ? PlacementMode.Decal : PlacementMode.Tile;
+                }
+
+                if (Game.Input.Keyboard.IsDown(Keys.LeftControl) && Game.Input.Keyboard[Keys.S] == InputState.ButtonState.JustPressed)
+                {
+                    var save = new System.Windows.Forms.SaveFileDialog() { Filter = "XML File|*.xml" };
+                    if (save.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        using (var writer = XmlWriter.Create(save.FileName))
+                        {
+                            IntermediateSerializer.Serialize(writer, new LevelIO(Map), null);
+                        }
+                    }
+                }
+                if (Game.Input.Keyboard.IsDown(Keys.LeftControl) && Game.Input.Keyboard[Keys.L] == InputState.ButtonState.JustPressed)
+                {
+                    var open = new System.Windows.Forms.OpenFileDialog() { Filter = "XML File|*.xml" };
+                    if (open.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        using (var reader = XmlReader.Create(open.FileName))
+                        {
+                            var lvl = IntermediateSerializer.Deserialize<LevelIO>(reader, null);
+                            Map = lvl.ToMap(Game);
+                        }
+                    }
                 }
             }
             else if (CurState == State.SelectTile)
