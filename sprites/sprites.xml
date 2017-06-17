@@ -11,7 +11,6 @@
 				<Rotation>0</Rotation>
 			</SpriteInputFrame>
 		</Frames>
-		<FrameRate>0</FrameRate>
 		<LoopIndex>0</LoopIndex>
 	</SpriteInput>
 	<SpriteInput>
@@ -25,7 +24,6 @@
 				<Rotation>0</Rotation>
 			</SpriteInputFrame>
 		</Frames>
-		<FrameRate>0</FrameRate>
 		<LoopIndex>0</LoopIndex>
 	</SpriteInput>
 	<SpriteInput>
@@ -39,7 +37,6 @@
 				<Rotation>0</Rotation>
 			</SpriteInputFrame>
 		</Frames>
-		<FrameRate>0</FrameRate>
 		<LoopIndex>0</LoopIndex>
 	</SpriteInput>
 	<SpriteInput>
@@ -53,7 +50,6 @@
 				<Rotation>0</Rotation>
 			</SpriteInputFrame>
 		</Frames>
-		<FrameRate>0</FrameRate>
 		<LoopIndex>0</LoopIndex>
 	</SpriteInput>
 	<SpriteInput>
@@ -67,7 +63,6 @@
 				<Rotation>0</Rotation>
 			</SpriteInputFrame>
 		</Frames>
-		<FrameRate>0</FrameRate>
 		<LoopIndex>0</LoopIndex>
 	</SpriteInput>
 	<SpriteInput>
@@ -81,7 +76,6 @@
 				<Rotation>0</Rotation>
 			</SpriteInputFrame>
 		</Frames>
-		<FrameRate>0</FrameRate>
 		<LoopIndex>0</LoopIndex>
 	</SpriteInput>
 	<SpriteInput>
@@ -95,7 +89,6 @@
 				<Rotation>0</Rotation>
 			</SpriteInputFrame>
 		</Frames>
-		<FrameRate>0</FrameRate>
 		<LoopIndex>0</LoopIndex>
 	</SpriteInput>
 	<SpriteInput>
@@ -109,7 +102,6 @@
 				<Rotation>0</Rotation>
 			</SpriteInputFrame>
 		</Frames>
-		<FrameRate>0</FrameRate>
 		<LoopIndex>0</LoopIndex>
 	</SpriteInput>
 	<SpriteInput>
@@ -123,7 +115,6 @@
 				<Rotation>0</Rotation>
 			</SpriteInputFrame>
 		</Frames>
-		<FrameRate>0</FrameRate>
 		<LoopIndex>0</LoopIndex>
 	</SpriteInput>
 	<SpriteInput>
@@ -137,7 +128,6 @@
 				<Rotation>0</Rotation>
 			</SpriteInputFrame>
 		</Frames>
-		<FrameRate>0</FrameRate>
 		<LoopIndex>0</LoopIndex>
 	</SpriteInput>
 	<SpriteInput>
@@ -151,7 +141,6 @@
 				<Rotation>0</Rotation>
 			</SpriteInputFrame>
 		</Frames>
-		<FrameRate>0</FrameRate>
 		<LoopIndex>0</LoopIndex>
 	</SpriteInput>
 	<SpriteInput>
@@ -186,7 +175,6 @@
 				<Rotation>0</Rotation>
 			</SpriteInputFrame>
 		</Frames>
-		<FrameRate>0</FrameRate>
 		<LoopIndex>0</LoopIndex>
 	</SpriteInput>
 	<SpriteInput>
@@ -221,7 +209,6 @@
 				<Rotation>0</Rotation>
 			</SpriteInputFrame>
 		</Frames>
-		<FrameRate>0</FrameRate>
 		<LoopIndex>0</LoopIndex>
 	</SpriteInput>
 </ArrayOfSpriteInput>
