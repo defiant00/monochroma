@@ -59,25 +59,29 @@ namespace Chromatic.Code
 
         public class MouseState
         {
-            public ButtonState LeftButton { get { return GetState(LeftPressed, LeftPriorPressed); } }
-            public ButtonState RightButton { get { return GetState(RightPressed, RightPriorPressed); } }
+            public ButtonState LeftButton { get { return GetState(LeftPressed, PriorLeftPressed); } }
+            public ButtonState RightButton { get { return GetState(RightPressed, PriorRightPressed); } }
+			public int ScrollWheel { get { return Scroll - PriorScroll; } }
             public int RawX, RawY, X, Y;
-            bool LeftPressed, RightPressed, LeftPriorPressed, RightPriorPressed;
-            int OutputOffsetX, OutputOffsetY;
+
+            bool LeftPressed, RightPressed, PriorLeftPressed, PriorRightPressed;
+            int OutputOffsetX, OutputOffsetY, Scroll, PriorScroll;
             float OutputScale;
 
             public MouseState(Rectangle area) { SetupArea(area); }
 
             public void Update()
             {
-                LeftPriorPressed = LeftPressed;
-                RightPriorPressed = RightPressed;
+                PriorLeftPressed = LeftPressed;
+                PriorRightPressed = RightPressed;
+				PriorScroll = Scroll;
 
                 var m = Microsoft.Xna.Framework.Input.Mouse.GetState();
                 LeftPressed = m.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed;
                 RightPressed = m.RightButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed;
                 RawX = m.X;
                 RawY = m.Y;
+				Scroll = m.ScrollWheelValue;
                 X = (int)Math.Floor((RawX - OutputOffsetX) * OutputScale);
                 Y = (int)Math.Floor((RawY - OutputOffsetY) * OutputScale);
             }

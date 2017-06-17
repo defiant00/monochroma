@@ -38,8 +38,9 @@ namespace Chromatic
 		}
 		public RenderTarget2D SpriteTarget, LightTarget, InterfaceTarget;
 		public DynamicLightEffect DynamicLightEffect;
-		public RadialEffect RadialEffect;
+		public Effect RadialEffect;
 		public Sprite RectangleSprite;
+		public RectangleRenderer RectangleRenderer;
 
 		public Chromatic()
 		{
@@ -48,7 +49,7 @@ namespace Chromatic
 			Graphics.PreferredBackBufferHeight = 720;
 
 			DynamicLightEffect = new DynamicLightEffect(this);
-			RadialEffect = new RadialEffect(this);
+			RectangleRenderer = new RectangleRenderer(this);
 
 			Input = new InputState(new Rectangle(0, 0, 1280, 720));
 			CalcOutputRectangle();
@@ -92,7 +93,8 @@ namespace Chromatic
 			InterfaceTarget = new RenderTarget2D(GraphicsDevice, 1280, 720);
 
 			DynamicLightEffect.LoadContent();
-			RadialEffect.LoadContent();
+			RadialEffect = Content.Load<Effect>(@"Effects\Radial");
+			RadialEffect.Parameters["wpvMatrix"].SetValue(WPVMatrix);
 
 			RectangleSprite = new Sprite(SpriteMap, "pixel");
 

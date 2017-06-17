@@ -48,10 +48,10 @@
     <Compile Include="Code\GameItem\Editor.cs" />
     <Compile Include="Code\GameItem\IGameItem.cs" />
     <Compile Include="Code\InputState.cs" />
-    <Compile Include="Code\LevelIO.cs" />
     <Compile Include="Code\Renderable\Effects\DynamicLightEffect.cs" />
-    <Compile Include="Code\Renderable\Effects\RadialEffect.cs" />
+    <Compile Include="Code\Renderable\Light.cs" />
     <Compile Include="Code\Renderable\Map.cs" />
+    <Compile Include="Code\Renderable\RectangleRenderer.cs" />
     <Compile Include="Code\Renderable\Sprite.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +64,7 @@
       <HintPath>..\..\..\Program Files (x86)\MSBuild\MonoGame\v3.0\Tools\MonoGame.Framework.Content.Pipeline.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
